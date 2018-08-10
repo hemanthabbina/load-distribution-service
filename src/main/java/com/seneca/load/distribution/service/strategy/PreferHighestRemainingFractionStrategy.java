@@ -1,7 +1,7 @@
-package com.seneca.test.load.distribution.service.strategy;
+package com.seneca.load.distribution.service.strategy;
 
-import com.seneca.test.load.distribution.service.dto.output.TaskDistributionOutput;
-import com.seneca.test.load.distribution.service.service.DistributionStrategy;
+import com.seneca.load.distribution.service.dto.output.TaskDistributionOutput;
+import com.seneca.load.distribution.service.service.DistributionStrategy;
 
 public class PreferHighestRemainingFractionStrategy implements DistributionStrategy {
 	@Override

@@ -1,4 +1,4 @@
-package com.seneca.test.load.distribution.service.config;
+package com.seneca.load.distribution.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,9 +27,6 @@ public class SwaggerConfig {
 				.title("Load Distribution Service")
 				.description("Service to distribute the workload among vendors")
 				.version("1")
-				//.termsOfServiceUrl("terms-of-services.url")
-				//.license("LICENSE")
-				//.licenseUrl("http://url-to-license.com")
 				.build();
 	}
 

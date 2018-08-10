@@ -1,9 +1,10 @@
-package com.seneca.test.load.distribution.service.dto.input.validator;
+package com.seneca.load.distribution.service.dto.input.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import com.seneca.test.load.distribution.service.dto.input.InputWorkLoad;
+
+import com.seneca.load.distribution.service.dto.input.InputWorkLoad;
 
 @Component
 public class InputWorkLoadValidator implements Validator {

@@ -1,4 +1,4 @@
-package com.seneca.test.load.distribution.service.dto.input;
+package com.seneca.load.distribution.service.dto.input;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

@@ -14,10 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.seneca.test.load.distribution.service.dto.input.InputWorkLoad;
-import com.seneca.test.load.distribution.service.dto.input.TaskDistributionInput;
-import com.seneca.test.load.distribution.service.dto.output.TaskDistributionOutput;
-import com.seneca.test.load.distribution.service.service.LoadDistributionService;
+import com.seneca.load.distribution.service.LoadDistributionServiceApplication;
+import com.seneca.load.distribution.service.dto.input.InputWorkLoad;
+import com.seneca.load.distribution.service.dto.input.TaskDistributionInput;
+import com.seneca.load.distribution.service.dto.output.TaskDistributionOutput;
+import com.seneca.load.distribution.service.service.LoadDistributionService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,7 +38,7 @@ public class LoadDistributionServiceTest {
 		list.add(new TaskDistributionInput("B", 40));
 		list.add(new TaskDistributionInput("C", 20));
 		input.setDistribution(list);
-		List<TaskDistributionOutput> output = loadDistributionService.computeDistribution(input);
+		List<TaskDistributionOutput> output = loadDistributionService.distributeTasks();
 		assertNotNull(output);
 		assertEquals(output.size(), 3);
 		for (TaskDistributionOutput o : output) {
@@ -56,7 +57,7 @@ public class LoadDistributionServiceTest {
 		int totalTasks = 100;
 		TaskDistributionInput taskDistribution = new TaskDistributionInput("A", 40);
 
-		TaskDistributionOutput output = loadDistributionService.getTasksAsPerShare(totalTasks, taskDistribution);
+		TaskDistributionOutput output = loadDistributionService.computeTasksAsPerShare(totalTasks, taskDistribution);
 		assertEquals(output.getVendor(), taskDistribution.getVendor());
 		assertEquals(output.getNumTasks(), totalTasks * taskDistribution.getDistributionPercent() / 100);
 	}

@@ -30,6 +30,7 @@ prefer vendor with highest remaining capacity), default being the prefer vendor 
 #### Technologies
     Spring Boot 2.0.4 (with embeded Tomcat)
     Maven
+    Junit4 (Embeded with Spring-boot-test)
     
 #### API
 This webservice exposes a REST API POST /load-distribution-service/distribute to allocate the tasks among vendors. This API seeks the inputs in the body of the request and an optional query parameter 'strategy-type'.
@@ -56,3 +57,7 @@ Request Body
 
 ###### Output
 `[{"vendor":"B","num_tasks":5},{"vendor":"A","num_tasks":3},{"vendor":"C","num_tasks":3}]`
+
+
+##### Unit Tests
+Tests can be run using 'mvn test' or from any IDE.

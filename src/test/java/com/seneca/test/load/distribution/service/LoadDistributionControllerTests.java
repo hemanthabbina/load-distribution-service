@@ -25,7 +25,7 @@ public class LoadDistributionControllerTests {
 
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	private String url = "/load-distribution-service/distribute";
 
 	/**
@@ -35,9 +35,8 @@ public class LoadDistributionControllerTests {
 	 */
 	@Test
 	public void testLoadDistributionWithValidInputs() throws Exception {
-		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON).content(getInputBody())).andExpect(status().isOk())
-				.andExpect(content().json(getExpectedOutput()));
+		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+				.content(getInputBody())).andExpect(status().isOk()).andExpect(content().json(getExpectedOutput()));
 	}
 
 	/**
@@ -47,9 +46,8 @@ public class LoadDistributionControllerTests {
 	 */
 	@Test
 	public void testLoadDistributionWithInvalidContentType() throws Exception {
-		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_XML).content(getInputBody()))
-				.andExpect(status().isUnsupportedMediaType());
+		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_XML)
+				.content(getInputBody())).andExpect(status().isUnsupportedMediaType());
 	}
 
 	/**
@@ -70,9 +68,8 @@ public class LoadDistributionControllerTests {
 	 */
 	@Test
 	public void testLoadDistributionWithInvalidInputJson() throws Exception {
-		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON).content(getInvalidInputBody()))
-				.andExpect(status().isBadRequest());
+		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+				.content(getInvalidInputBody())).andExpect(status().isBadRequest());
 	}
 
 	/**
@@ -82,9 +79,8 @@ public class LoadDistributionControllerTests {
 	 */
 	@Test
 	public void testLoadDistributionWithInputValidationOnTotalTasks() throws Exception {
-		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON).content(getInputBodyWithInvalidTasks()))
-				.andExpect(status().isBadRequest());
+		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+				.content(getInputBodyWithInvalidTasks())).andExpect(status().isBadRequest());
 	}
 
 	/**
@@ -94,9 +90,8 @@ public class LoadDistributionControllerTests {
 	 */
 	@Test
 	public void testLoadDistributionWithInputValidationOnIndividualSharePercent() throws Exception {
-		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON).content(getInputBodyWithInvalidIndividualSharePercent()))
-				.andExpect(status().isBadRequest());
+		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+				.content(getInputBodyWithInvalidIndividualSharePercent())).andExpect(status().isBadRequest());
 	}
 
 	/**
@@ -106,8 +101,31 @@ public class LoadDistributionControllerTests {
 	 */
 	@Test
 	public void testLoadDistributionWithInputValidationOnTotalSharePercent() throws Exception {
-		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON).content(getInputBodyWithTotalSharePercent()))
+		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+				.content(getInputBodyWithTotalSharePercent())).andExpect(status().isBadRequest());
+	}
+
+	/**
+	 * Test with valid strategy.
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testLoadDistributionWithValidStrategyInputs() throws Exception {
+		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+				.param("strategy-type", "PREFER_HIGHEST_REMAINING").content(getInputBody())).andExpect(status().isOk())
+				.andExpect(content().json(getExpectedOutput()));
+	}
+
+	/**
+	 * Test with invalid valid strategy.
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testLoadDistributionWithInValidStrategyInputs() throws Exception {
+		mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+				.param("strategy-type", "NON-EXISTING_STRATEGY").content(getInputBody()))
 				.andExpect(status().isBadRequest());
 	}
 

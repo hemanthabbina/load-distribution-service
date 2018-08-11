@@ -1,7 +1,6 @@
 package com.seneca.load.distribution.service.strategy;
 
 import com.seneca.load.distribution.service.dto.output.TaskDistributionOutput;
-import com.seneca.load.distribution.service.service.DistributionStrategy;
 
 public class PreferBigVendorStrategy implements DistributionStrategy {
 
